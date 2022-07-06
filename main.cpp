@@ -214,14 +214,16 @@ void findHSV(string filepath)
         color = (150, 124, 210);
     }
 
-    if (filepath == "data/pedestrian_zone.jpg")
+    if (filepath == "data/pedestrian_zone_final.jpeg")
     {
-        hmin = 95;
-        hmax = 172;
-        smin = 0;
-        smax = 16;
-        vmin = 146;
-        vmax = 182;
+        hmin = 39;
+        hmax = 179;
+        smin = 101;
+        smax = 255;
+        vmin = 121;
+        vmax = 255;
+
+        isRound = true;
 
         color = (161, 111, 245);
     }
@@ -259,7 +261,7 @@ void findHSV(string filepath)
 Mat imgHSV, imgBlur, imgCanny, imgDil, mask;
 
 int main() {
-    string filepath = "data/highway_entry.jpg";
+    string filepath = "data/pedestrian_zone_final.jpeg";
     Mat src = cv::imread(filepath);
 	if(src.empty()){
 		throw runtime_error("Cannot open image!");
@@ -296,7 +298,8 @@ int main() {
         getContours(imgDil, src);   
         //imshow("hsv", imgHSV);
         //imshow("mask", mask);
-        imshow("original", imgCrop);
+        imshow("cropped", imgCrop);
+        imshow("original", src);
         //waitKey(1);   //use with while
         waitKey(0);
     //}
